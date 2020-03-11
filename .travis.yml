@@ -31,3 +31,10 @@ script:
   - bazel --nomaster_bazelrc --bazelrc=/dev/null version
   - bazel --nomaster_bazelrc --bazelrc=/dev/null info
   - bazel build --host_javabase=@local_jdk//:jdk -- //src:bazel //src:bazel_jdk_minimal //src:test_repos
+
+notifications:
+  slack:
+    rooms:
+      - secure: "mkbqvEsL5RGyQGYVxUMF4072S/1BgYGWV5jXiW/YhZQOgQz67F0wQeK636Vxlu2ADr0GwUa9z8cZW4x2RZUK7TEbnvlJ+HL/f3PIpf8atUBTpXO5Y8kcw6SpTPjtdVzTfS33HuKk3eGTGMdnxpcx/u5uX6JGXcVw0U3GedMR8M4rZ++T+7qOyG8KlcVSV+s8PDm3BydOUMsB+xCXGMzQuUvmG8VbyZ7IMfPlaWGH0q7JLb/5HVK5eJOBruvqxMKL1r6vkPoAUCROZ4Oa2U1+ttFYWRA7v7xz/qQHgGWoBEF9/81bVaF85YiuQA/euXl135VjrzlA4lcTAA+/y3rhSsDceTSRf+fmhVziPGgqpl/En/PT0rLxN2aM/5uUbl8zqII2MChGplHl4Y5T7MzWzSgtHFVdowcEnpYvpHCiFnqrC+TwVrpBKvboklTmXWNd9pr92aQ6jtlUZ4JdbqcI6j1m1TQOOYxQ546gY8Etixxvk6cy/9UIVRB8SD34xMq0/H0bhDedQKQ2zeHPp3W3zCkcIAFp4g6uMGfhptA49NELzRFs+4M15BvTdeOEsqhIUoZuXCbpYy/87xmOkn0uJu5hfRLmm4wJ79iz2oB13RUbSV9CSCewGxX50b0qTMxiNHus0YweVybiPbH4p0uoahK9B3mIBX88m07Rh117lWk="
+    on_success: change
+    on_failure: change
