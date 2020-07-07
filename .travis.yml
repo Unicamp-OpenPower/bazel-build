@@ -19,13 +19,18 @@ install:
   - sudo apt install default-jre default-jdk
 
 script:
-  - wget -q https://oplab9.parqtec.unicamp.br/pub/ppc64el/bazel/ubuntu_${dist_version}/bazel_bin_ppc64le_3.0.0
-  - sudo mv bazel_bin_ppc64le_3.0.0 /usr/local/bin/bazel
+  - wget -q https://oplab9.parqtec.unicamp.br/pub/ppc64el/bazel/ubuntu_${dist_version}/bazel_bin_ppc64le_3.3.1
+  - sudo mv bazel_bin_ppc64le_3.3.1 /usr/local/bin/bazel
   - sudo chmod +x /usr/local/bin/bazel
   - git clone --depth 1 https://github.com/bazelbuild/bazel.git
   #- git clone https://github.com/bazelbuild/bazel.git
   - cd bazel
   #- git checkout 8ae9f75d6daee8409a11bd50070be42739107db3
+  - ini=$(pwd)
+  - rm $ini/tools/jdk/BUILD
+  - cd $ini/tools/jdk/
+  - wget https://raw.githubusercontent.com/bazelbuild/bazel/78a29b0d0dfe350ab9513b6eefa9a2ed46c6c865/tools/jdk/BUILD
+  - cd $ini
   - bazel --nomaster_bazelrc --bazelrc=/dev/null version
   - bazel --nomaster_bazelrc --bazelrc=/dev/null info
   - bazel build --host_javabase=@local_jdk//:jdk -- //src:bazel //src:bazel_jdk_minimal //src:test_repos
