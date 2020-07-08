@@ -26,11 +26,11 @@ script:
   #- git clone https://github.com/bazelbuild/bazel.git
   - cd bazel
   #- git checkout 8ae9f75d6daee8409a11bd50070be42739107db3
-  - ini=$(pwd)
-  - rm $ini/tools/jdk/BUILD
-  - cd $ini/tools/jdk/
-  - wget https://raw.githubusercontent.com/bazelbuild/bazel/78a29b0d0dfe350ab9513b6eefa9a2ed46c6c865/tools/jdk/BUILD
-  - cd $ini
+  #- ini=$(pwd)
+  #- rm $ini/tools/jdk/BUILD
+  #- cd $ini/tools/jdk/
+  #- wget https://raw.githubusercontent.com/bazelbuild/bazel/78a29b0d0dfe350ab9513b6eefa9a2ed46c6c865/tools/jdk/BUILD
+  #- cd $ini
   - bazel --nomaster_bazelrc --bazelrc=/dev/null version
   - bazel --nomaster_bazelrc --bazelrc=/dev/null info
   - bazel build --host_javabase=@local_jdk//:jdk -- //src:bazel //src:bazel_jdk_minimal //src:test_repos
