@@ -19,8 +19,11 @@ install:
   - sudo apt install default-jre default-jdk
 
 script:
-  - wget -q https://oplab9.parqtec.unicamp.br/pub/ppc64el/bazel/ubuntu_${dist_version}/bazel_bin_ppc64le_3.3.1
-  - sudo mv bazel_bin_ppc64le_3.3.1 /usr/local/bin/bazel
+  - wget https://raw.githubusercontent.com/Unicamp-OpenPower/bazel-releases/master/bazel-version.py
+  - python3 bazel-version.py $dist_version
+  - ftp_version=$(cat ftp_version.txt)
+  - wget -q https://oplab9.parqtec.unicamp.br/pub/ppc64el/bazel/ubuntu_${dist_version}/bazel_bin_ppc64le_$ftp_version
+  - sudo mv bazel_bin_ppc64le_$ftp_version /usr/local/bin/bazel
   - sudo chmod +x /usr/local/bin/bazel
   - git clone --depth 1 https://github.com/bazelbuild/bazel.git
   #- git clone https://github.com/bazelbuild/bazel.git
